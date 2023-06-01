@@ -1,6 +1,7 @@
 package com.example.colegioelite.entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,7 +24,7 @@ public class Estudiante {
 
 
     @OneToOne(mappedBy = "estudiante", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference
     private Acudiente acudiente;
 
     @Transient

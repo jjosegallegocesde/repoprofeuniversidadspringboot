@@ -3,6 +3,10 @@ package com.example.colegioelite.controladores;
 import com.example.colegioelite.entidades.Acudiente;
 import com.example.colegioelite.entidades.Estudiante;
 import com.example.colegioelite.servicios.AcudienteServicio;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +16,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/acudientes")
+@Tag(name = "Acudientes", description = "Endpoints relacionados con los acudientes")
 public class ControladorAcudiente {
 
     @Autowired
     protected AcudienteServicio acudienteServicio;
 
     @PostMapping
+    @Operation(summary = "Registrar un acudiente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Acudiente registrado exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Error al registrar el acudiente")
+    })
     public ResponseEntity<Acudiente> registrar(@RequestBody Acudiente datosAcudiente){
         try{
             Acudiente acudienteRegistrado= acudienteServicio.registrar(datosAcudiente);

@@ -21,7 +21,7 @@ public class Acudiente {
 
     @OneToOne
     @JoinColumn(name="id_estudiante")
-    @JsonManagedReference
+    @JsonBackReference
     private Estudiante estudiante;
 
     @Transient
